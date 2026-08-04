@@ -1,43 +1,58 @@
-# Battleship — Python starter
-# Run: python3 battleship.py
+# Battleship — see README.md for step-by-step instructions and references
 
 import random
 
-SIZE = 5
-SHIP_LENGTH = 3
+# board dimensions (the board is dims x dims)
+dims = 5
 
 
-def make_board():
-    # board[row][col]: "." = unknown, "X" = hit, "O" = miss
-    return [["." for _ in range(SIZE)] for _ in range(SIZE)]
+# build the game board: a 2d list filled with 'O' characters, dims rows by dims cols
+# (hint: list comprehension)
+def build_board(dims):
+    pass
 
 
+# print the board, one row per line
 def print_board(board):
-    print("  " + " ".join(str(c) for c in range(SIZE)))
-    for r, row in enumerate(board):
-        print(f"{r} " + " ".join(row))
+    pass
 
 
-def place_ship():
-    # MILESTONE 2: return the ship's cells as a list of (row, col) tuples —
-    # SHIP_LENGTH cells in a line (horizontal or vertical), random position,
-    # fully inside the board.
-    # TODO
-    return []
+# place a ship on the board:
+#   - random length (2 up to dims)
+#   - random orientation (horizontal or vertical)
+#   - random position, fully inside the board
+# return the ship as a list of (row, col) tuples
+def build_ship(dims):
+    pass
 
 
+# ask the player for a row and a column, return them as a (row, col) tuple
+# (remember: players count from 1, lists count from 0)
+def user_guess():
+    pass
+
+
+# handle one guess:
+#   - already guessed? tell them
+#   - hit? mark 'X' on the board and remove that cell from the ship
+#   - miss? let them know
+# return the updated board
+def update_board(guess, board, ship, guesses):
+    pass
+
+
+def welcome_message():
+    print('Welcome to Battleship!')
+    print('A battleship is hidden in the board. Guess rows and columns to sink it!')
+
+
+# the game loop: build the board and the ship,
+# keep taking guesses until every ship cell is hit
 def main():
-    board = make_board()
-    ship = place_ship()
-
-    print_board(board)
-
-    # MILESTONE 3: loop — ask for a guess, check it against `ship`,
-    # mark "X" or "O" on the board, reprint.
-    # MILESTONE 4: stop when every ship cell is hit; print guess count.
-    answer = input("Guess (row col): ")
-    print(f"You guessed: {answer} — now make it do something!")
+    welcome_message()
+    # TODO: build_board, build_ship, then loop while the ship still has cells:
+    #       take a guess, update the board, print the board
+    print('Now build the game!')
 
 
-if __name__ == "__main__":
-    main()
+main()

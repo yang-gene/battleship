@@ -1,43 +1,26 @@
-// Battleship — JavaScript starter
-// Run: node battleship.js  (Node 18+)
+// set grid rows and columns and the size of each square
+var rows = 10;
+var cols = 10;
+var squareSize = 50;
 
-const readline = require("node:readline/promises");
+// get the container element
+var gameBoardContainer = document.getElementById("gameboard");
 
-const SIZE = 5;
-const SHIP_LENGTH = 3;
+// make the grid columns and rows
 
-// board[row][col]: "." = unknown, "X" = hit, "O" = miss
-function makeBoard() {
-  return Array.from({ length: SIZE }, () => Array(SIZE).fill("."));
-}
+/* lazy way of tracking when the game is won: just increment hitCount on every hit
+   in this version, and according to the official Hasbro rules (http://www.hasbro.com/common/instruct/BattleShip_(2002).PDF)
+   there are 17 hits to be made in order to win the game:
+      Carrier     - 5 hits
+      Battleship  - 4 hits
+      Destroyer   - 3 hits
+      Submarine   - 3 hits
+      Patrol Boat - 2 hits
+*/
 
-function printBoard(board) {
-  console.log("  " + [...Array(SIZE).keys()].join(" "));
-  board.forEach((row, r) => console.log(r + " " + row.join(" ")));
-}
+/* create the 2d array that will contain the status of each square on the board
+   and place ships on the board (later, create function for random placement!)
 
-// MILESTONE 2: return the ship's cells as a list of [row, col] pairs —
-// SHIP_LENGTH cells in a line (horizontal or vertical), random position,
-// fully inside the board.
-function placeShip() {
-  // TODO
-  return [];
-}
+   0 = empty, 1 = part of a ship, 2 = a sunken part of a ship, 3 = a missed shot
+*/
 
-async function main() {
-  const rl = readline.createInterface({ input: process.stdin, output: process.stdout });
-  const board = makeBoard();
-  const ship = placeShip();
-
-  printBoard(board);
-
-  // MILESTONE 3: loop — ask for a guess, check it against `ship`,
-  // mark "X" or "O" on the board, reprint.
-  // MILESTONE 4: stop when every ship cell is hit; print guess count.
-  const answer = await rl.question("Guess (row col): ");
-  console.log(`You guessed: ${answer} — now make it do something!`);
-
-  rl.close();
-}
-
-main();
