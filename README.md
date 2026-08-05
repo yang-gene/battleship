@@ -5,9 +5,18 @@ Code Club RDU in-meeting project — build the classic Battleship game.
 ## Folders
 
 - `javascript/` — this version runs where JS runs, in the browser. The HTML and CSS shell is provided; you write the game logic in `battleship.js`. Open `index.html` in a browser to run it. Based on the [LearnTeachCode Battleship tutorial](https://github.com/LearnTeachCode/Battleship-JavaScript).
-- `python/` — this one runs in the console. You write the game logic in `battleship.py`. Run with `python3 battleship.py`. Based on the [Python for Beginners Battleship tutorial](https://bigmonty12.github.io/battleship).
+- `python/` — runs in the console. Build the game step by step in `battleship.py`, starting from the design thought process in the folder's README. Run with `python3 battleship.py`.
 
-Both starters are comment scaffolds: the comments walk you through what to build, step by step. Stuck? The reference tutorial linked in each folder builds the same game with explanations.
+## No-setup option: GitHub Codespaces
+
+Codespaces gives you VS Code in the browser with everything pre-installed. We all work in this one repo, on branches:
+
+1. Get write access: drop your GitHub username in the Discord and a lead will add you as a collaborator
+2. Green **Code** button → **Codespaces** tab → **Create codespace on main** (~30s to load)
+3. Make your team's branch: `git switch -c your-team-name` in the terminal
+4. Commit + push from the Source Control panel as you go; open a Pull Request when you want eyes on your work
+
+Prefer working locally? Clone and go — any recent Python 3 works.
 
 ## Team tips
 
