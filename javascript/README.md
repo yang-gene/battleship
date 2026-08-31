@@ -1,38 +1,41 @@
 # Battleship-JavaScript
 
-A very very simple Battleship game written in plain JavaScript, borrowed from: <https://github.com/LearnTeachCode/Battleship-JavaScript/blob/gh-pages/README.md>
+A simple Battleship game in plain JavaScript. The HTML and CSS shell is provided; `battleship.js` has the constants and stubbed-out functions to guide you — the game logic and UI decisions are yours.
 
 Read about the game and its rules here: <https://en.wikipedia.org/wiki/Battleship_(game)>
 
-### Step 1: Create a grid on your HTML page for the game board
+Run it over http — `python3 -m http.server` in this folder, then open <http://localhost:8000> (the module script won't load from `file://`).
+
+### Step 1: Render the board and make every click a miss
+
+Get a 10x10 grid on the page, and register clicks so each guess shows up as a miss. Reject repeat guesses.
 
 Useful references:
 
-- [Document.getElementById()](https://developer.mozilla.org/en-US/docs/Web/API/Document/getElementById)
+- [CSS grid layout](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_grid_layout)
 - [Document.createElement()](https://developer.mozilla.org/en-US/docs/Web/API/Document/createElement)
-- [appendChild()](https://developer.mozilla.org/en-US/docs/Web/API/Node/appendChild)
-- [style property](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/style)
-- [Loops in JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Loops_and_iteration)
+- [Handling events](https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/Events)
+- [Event delegation](https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/Event_bubbling#event_delegation)
 
-### Step 2: Model the game board in JavaScript and place ships
+### Step 2: Hide the fleet and score hits
+
+Place every ship in `FLEET` at a random legal spot — no overlaps, nothing out of bounds. Ships stay hidden; a guess on a ship cell is a hit.
 
 Useful references:
 
 - [Arrays in JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)
+- [Math.random()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random)
 
-### Step 3: Create event handler and write the game logic
+### Step 3: Win, lose, and play again
 
-Useful references:
+The game is won when all 17 ship cells are hit, and lost when the player runs out of guesses — pick a guess cap. Offer a way to play again.
 
-- [Events in JavaScript](http://www.kirupa.com/html5/javascript_events.htm)
-- [Handling Events for Many Elements](http://www.kirupa.com/html5/handling_events_for_many_elements.htm)
-- [Handling Events - Eloquent JavaScript Chapter 14](http://eloquentjavascript.net/14_event.html)
+### Step 4: Reveal sunk ships
 
-### Step 4: Play the game
+When a ship's last cell is hit, reveal that whole ship and name it. On a loss, reveal whatever's left of the fleet.
 
-Features to implement next:
+### Ideas for after
 
-- Display game messages within the HTML page instead of using [alert()](https://developer.mozilla.org/en-US/docs/Web/API/Window/alert)
-- Randomize placement of the ships at the start of each game
-- Make better graphics, maybe add sound effects?
-- Make a 2-player version of the game!
+- Sound effects, better graphics
+- A vs-CPU mode where the computer guesses back
+- A 2-player version

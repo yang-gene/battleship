@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<meta charset="utf-8">
 		<title>A Very Simple Battleship Game</title>
-		<link rel="stylesheet" type="text/css" href="style.css">
+		<link rel="stylesheet" href="style.css">
 	</head>
 	<body>
-	
-	<h1>Battleship</h1>	
-
-	<p>Click the board to fire at a ship. Try to sink every battleship!</p>
-
-	<div id="gameboard">
+	<h1>Battleship</h1>
+	<div id="infoContainer">
+		<div id="guessCount"></div>
+		<div id="gameInfo"></div>
 	</div>
-	
-	<script type="text/javascript" src="battleship.js"></script>
+	<!-- Both hooks matter: #gameboard is the grid CSS, .game-board styles the cells. -->
+	<div id="gameboard" class="game-board"></div>
+	<script type="module" src="battleship.js"></script>
 	</body>
 </html>
