@@ -139,7 +139,26 @@ class Board:
     # If it's good: save position + orientation on the ship, mark it placed,
     # return True.
     def place_ship(self, type: ShipType, position: Point2D, orientation: Orientation) -> bool:
-        pass  # TODO
+        # Check if space required for ship is empty
+        ship_length = ALL_SHIPS[type]
+
+        if orientation == Orientation.VERTICAL:
+            for i in range(ship_length):
+                if self.grid[position[0]][position[1] + i] != CellState.EMPTY:
+                    return
+        else:
+            for i in range(ship_length):
+                if self.grid[position[0] + i][position[1]] != CellState.EMPTY:
+                    return
+
+        # Create the ship 
+        new_boat = Ship(ship_length)
+        new_boat.orientation = orientation
+        new_boat.position = position
+        new_boat.placed = True
+
+        # Add to board array of ships
+        self.ships.append(new_boat)
 
     # STEP 7: ready = every ship in the fleet has been placed
     def is_ready(self) -> bool:
@@ -173,6 +192,7 @@ if __name__ == "__main__":
     # ✅ CHECKPOINT 1 — two empty boards (steps 1-5).
     # Expected output: README. Don't move on until yours matches.
     my_board = Board()
+    my_board.place_ship(ShipType.BATTLESHIP, (0,0), Orientation.VERTICAL)
     cpu_board = Board()
     cpu_board.show()
     print("\n---------------------\n")
