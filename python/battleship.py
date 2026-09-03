@@ -60,6 +60,36 @@ class Ship:
         self.placed = False
         self.health = self.length
 
+    def positions(self) -> list[tuple[int,int]]:
+        """ Calculates the list of associated positions/coordinates for a ship.
+
+        Returns:
+            list[tuple[int,int]]: A list of (row, col) tuples representing the positions of the ship.
+        """
+        positions = []
+        for i in range(0, self.length):
+            if self.orientation == Orientation.VERTICAL:
+                positions.append((self.position[0]+i, self.position[1]))
+            else:
+                positions.append((self.position[0], self.position[1]+i))
+        return positions
+
+    def check_ship_collisions(self, ships: "list[Ship]") -> bool:
+        """ Checks if the current ship collides with any of a given list of ships.
+
+        Args:
+            ships: A list of Ship objects to check for collisions with.
+
+        Returns:
+            bool: True if the ship collides with any of the given ships, False otherwise.
+        """
+        # Note: This isn't the most efficient, but it's simple. I doubt we need a more efficient solution :)
+        for ship in ships:
+            for position in self.positions():
+                if position in ship.positions():
+                    return True
+        return False
+
 # STEP 2: the classic fleet — build a dict with one Ship per ShipType:
 # destroyer 2, submarine 3, cruiser 3, battleship 4, carrier 5
 ALL_SHIPS = {
@@ -151,7 +181,7 @@ class Board:
                 if self.grid[position[0] + i][position[1]] != CellState.EMPTY:
                     return
 
-        # Create the ship 
+        # Create the ship
         new_boat = Ship(ship_length)
         new_boat.orientation = orientation
         new_boat.position = position
@@ -191,12 +221,12 @@ class Board:
 if __name__ == "__main__":
     # ✅ CHECKPOINT 1 — two empty boards (steps 1-5).
     # Expected output: README. Don't move on until yours matches.
-    my_board = Board()
-    my_board.place_ship(ShipType.BATTLESHIP, (0,0), Orientation.VERTICAL)
-    cpu_board = Board()
-    cpu_board.show()
-    print("\n---------------------\n")
-    my_board.show(show_ships=True)
+    # my_board = Board()
+    # my_board.place_ship(ShipType.BATTLESHIP, (0,0), Orientation.VERTICAL)
+    # cpu_board = Board()
+    # cpu_board.show()
+    # print("\n---------------------\n")
+    # my_board.show(show_ships=True)
 
     # ✅ CHECKPOINT 2 — place the fleet (steps 6-7). Ready flips to True
     # only when all five ships are down. Try an off-board or overlapping
@@ -218,3 +248,6 @@ if __name__ == "__main__":
 
     # Then: milestones. Uncomment when play() exists.
     # play()
+
+    ship = Ship(length=5)
+    print(ship.positions())
