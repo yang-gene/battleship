@@ -111,7 +111,7 @@ class Board:
     def __init__(self) -> None:
         self.ships = [] # List of Ships
         self.guesses = [] # List of tuples (points) (X, Y, CellState)
-        self.grid = []
+        self.grid = self._build_board_state(True)
 
     # STEP 4: combine self.guesses and ship positions into one grid for display.
     # Start from a copy of self.guesses, then stamp CellState.SHIP over the cells
@@ -175,11 +175,11 @@ class Board:
         if orientation == Orientation.VERTICAL:
             for i in range(ship_length):
                 if self.grid[position[0]][position[1] + i] != CellState.EMPTY:
-                    return
+                    return False
         else:
             for i in range(ship_length):
                 if self.grid[position[0] + i][position[1]] != CellState.EMPTY:
-                    return
+                    return False
 
         # Create the ship
         new_boat = Ship(ship_length)
@@ -190,9 +190,15 @@ class Board:
         # Add to board array of ships
         self.ships.append(new_boat)
 
+        return True
+
     # STEP 7: ready = every ship in the fleet has been placed
     def is_ready(self) -> bool:
-        pass  # TODO
+        for t in ALL_SHIPS.keys():
+            if self.ships.count(t) != 1:
+                return False
+        return True
+
 
     # STEP 8: did a shot at this position hit a ship?
     # For now just return True (hit) or False (miss).
